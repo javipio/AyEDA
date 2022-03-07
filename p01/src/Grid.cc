@@ -35,8 +35,8 @@ Grid::Grid(std::string filename) {
   int i = 1;
   while (getline(input_file, line)) {
     for (int j = 0; j < line.size(); j++) {
-      if (line[j] == 'x') {
-        grid_[i][j + 1].setState(State::alive);
+      if (line[j] != ' ') {
+        grid_[i][j + 1].setState(static_cast<State>(line[j] - '0'));
       }
     }
 

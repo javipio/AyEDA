@@ -15,6 +15,7 @@
 #ifndef CELL_H_
 #define CELL_H_
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 class Cell;
@@ -22,10 +23,13 @@ class Cell;
 
 #ifndef CELL_C_
 #define CELL_C_
-enum State {
-  dead,
-  alive,
-};
+// enum State {
+//   dead,
+//   alive,
+// };
+
+// Modificación
+enum State { ne, r, az, am, v, na, p, b, g };
 
 class Cell {
  public:

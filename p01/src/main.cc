@@ -33,14 +33,13 @@ int main(int argc, char* argv[]) {
   std::system("clear");
   std::cout << "Generación 0" << std::endl;
   std::cout << grid;
-  sleep(2);
 
   // Bucle principal
   for (int i = 0; i < iterations; i++) {
-    std::system("clear");
+    // std::system("clear");
     std::cout << "Generación " << i << std::endl;
     std::cout << grid;
-    usleep(50000);
+    // usleep(50000);
     grid.nextGeneration();
   }
 

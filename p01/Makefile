@@ -1,30 +1,38 @@
-# project name (generate executable with this name)
-PROGNAME   = matrices
+PROGNAME    = life-game
+CC          = g++
+CFLAGS      = -std=c++2a -Wall
+LINKER      = g++
+LINKERFLAGS = 
 
-CC       = g++
-# compiling flags here
-CFLAGS   = -std=c++2a -Wall
-
-LINKER   = g++
-# linking flags here
-LFLAGS   = -Wall -pthread
-
-# change these to proper directories where each file should be
 SRCDIR   = src
-OBJDIR   = obj
+OBJDIR   = src/entity
 BINDIR   = bin
+TESTDIR  = tests
 
-SRC_FILES  := $(patsubst $(SRCDIR)/%.cc, $(BINDIR)/%.o, $(wildcard $(SRCDIR)/*.cc))
+SRC  := $(patsubst $(SRCDIR)/%.cc, $(OBJDIR)/%.o, $(wildcard $(SRCDIR)/*.cc))
+LIB_SRC  := $(patsubst $(SRCDIR)/%.cc, $(OBJDIR)/%.o, $(filter-out $(SRCDIR)/main.cc, $(wildcard $(SRCDIR)/*.cc)))
+TESTS_SRC := $(patsubst $(TESTDIR)/%.cc, $(TESTDIR)/%.o, $(wildcard $(TESTDIR)/*.cc))
 
-$(PROGNAME): $(SRC_FILES)
+$(PROGNAME): $(SRC)
 	@mkdir -p $(BINDIR)
-	@echo $(SRC_FILES)
-	@$(LINKER) $(SRC_FILES) $(LFLAGS) -o $(BINDIR)/$@
+	@echo $(SRC)
+	@$(LINKER) $(CFLAGS) $(LINKERFLAGS) $(SRC) -o $(BINDIR)/$(PROGNAME)
 	@echo "Linking complete!"
 
-$(BINDIR)/%.o: $(SRCDIR)/%.cc
+$(OBJDIR)/%.o: $(SRCDIR)/%.cc
+	@mkdir -p $(OBJDIR)
 	@echo $< $@
-	@$(CC) -g -c $< -o $@
+	@$(CC) -std=c++2a -g -c $< -o $@
+
+tests: $(TESTS_SRC)
+	@echo Compiling tests
+	@echo $(TESTS_SRC)
+
+$(TESTDIR)/%.o: $(LIB_SRC)
+	@mkdir -p $(BINDIR)/tests
+	@$(CC) $(CFLAGS) -g -c $(patsubst $(TESTDIR)/%.o, $(TESTDIR)/%.cc, $@) -o $(patsubst $(TESTDIR)/%.o, $(OBJDIR)/%.o, $@)
+	@$(LINKER) $(LINKERFLAGS) $(CFLAGS) -o $(patsubst $(TESTDIR)/%.o, $(BINDIR)/tests/%, $@) $(patsubst $(TESTDIR)/%.o, $(OBJDIR)/%.o, $@) $(LIB_SRC)
 
 clean:
+	rm -rf $(OBJDIR)/*
 	rm -rf $(BINDIR)/*
