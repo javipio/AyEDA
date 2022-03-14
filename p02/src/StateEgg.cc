@@ -28,10 +28,10 @@ void StateEgg::neighbors(const Grid& grid, int i, int j) {
     for (int j_offset = -1; j_offset <= 1; j_offset++) {
       if (!(i_offset || j_offset)) continue;
 
-      egg_neighbors_ +=
-          grid.getCell(i + i_offset, j + j_offset).getState() == state_egg;
-      larva_neighbors_ +=
-          grid.getCell(i + i_offset, j + j_offset).getState() == state_larva;
+      char cell_state = grid.getCell(i + i_offset, j + j_offset).getState();
+
+      egg_neighbors_ += cell_state == state_egg;
+      larva_neighbors_ += cell_state == state_larva;
     }
   }
 };

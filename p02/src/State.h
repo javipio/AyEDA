@@ -19,11 +19,11 @@ class Grid;
 
 class State {
  public:
-  static const char state_dead = 'd';
-  static const char state_egg = 'e';
-  static const char state_larva = 'l';
-  static const char state_pupa = 'p';
-  static const char state_adult = 'a';
+  static constexpr char state_dead = 'd';
+  static constexpr char state_egg = 'e';
+  static constexpr char state_larva = 'l';
+  static constexpr char state_pupa = 'p';
+  static constexpr char state_adult = 'a';
 
   /**
    * @brief Cuenta los vecinos de una célula.
