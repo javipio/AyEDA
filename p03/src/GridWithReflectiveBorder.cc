@@ -69,19 +69,6 @@ const Cell& GridWithReflectiveBorder::getCell(int i, int j) const {
   return grid_[parsed_i][parsed_j];
 }
 
-void GridWithReflectiveBorder::nextGeneration() {
-  for (int i = 0; i < rows_; i++) {
-    for (int j = 0; j < columns_; j++) {
-      grid_[i][j].neighbors(*this);
-    }
-  }
-  for (int i = 0; i < rows_; i++) {
-    for (int j = 0; j < columns_; j++) {
-      grid_[i][j].updateState();
-    }
-  }
-}
-
 void GridWithReflectiveBorder::constructGrid() {
   grid_ = new Cell*[rows_];
 

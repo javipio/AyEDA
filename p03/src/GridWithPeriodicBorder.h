@@ -13,8 +13,6 @@ class GridWithPeriodicBorder : public Grid {
 
   const Cell& getCell(int i, int j) const;
 
-  void nextGeneration();
-
  private:
   void constructGrid();
 

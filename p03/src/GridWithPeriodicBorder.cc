@@ -69,19 +69,6 @@ const Cell& GridWithPeriodicBorder::getCell(int i, int j) const {
   return grid_[parsed_i][parsed_j];
 }
 
-void GridWithPeriodicBorder::nextGeneration() {
-  for (int i = 0; i < rows_; i++) {
-    for (int j = 0; j < columns_; j++) {
-      grid_[i][j].neighbors(*this);
-    }
-  }
-  for (int i = 0; i < rows_; i++) {
-    for (int j = 0; j < columns_; j++) {
-      grid_[i][j].updateState();
-    }
-  }
-}
-
 void GridWithPeriodicBorder::constructGrid() {
   grid_ = new Cell*[rows_];
 

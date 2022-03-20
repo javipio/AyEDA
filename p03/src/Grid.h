@@ -56,7 +56,7 @@ class Grid {
   /**
    * @brief Computa la siguiente generación de la población.
    */
-  virtual void nextGeneration() = 0;
+  virtual void nextGeneration();
 
   friend std::ostream& operator<<(std::ostream&, const Grid&);
 
