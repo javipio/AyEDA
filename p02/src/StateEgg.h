@@ -22,11 +22,24 @@ class StateEgg : public State {
  public:
   StateEgg() = default;
 
-  void neighbors(const Grid&, int i, int j);
+  /**
+   * @brief Cuenta los vecinos de una célula.
+   * @param[in] grid Rejilla que contiene las células.
+   * @param[in] i posición i de la célula.
+   * @param[in] j posición j de la célula.
+   */
+  void neighbors(const Grid& grid, int i, int j) override;
 
-  State* nextState();
+  /**
+   * @brief Actualiza el estado teniendo en cuenta los vecinos de la célula,
+   * previamente calculados.
+   */
+  State* nextState() override;
 
-  char getState() const;
+  /**
+   * @brief Getter de state.
+   */
+  char getState() const override;
 
  private:
   int egg_neighbors_;

@@ -31,16 +31,10 @@ int main(int argc, char* argv[]) {
 
   Grid grid(argv[1]);
 
-  std::system("clear");
-  std::cout << "Generación 0" << std::endl;
-  std::cout << grid;
-
   // Bucle principal
   for (int i = 0; i < iterations; i++) {
-    // std::system("clear");
     std::cout << "Generación " << i << std::endl;
     std::cout << grid;
-    // usleep(50000);
     grid.nextGeneration();
   }
 
