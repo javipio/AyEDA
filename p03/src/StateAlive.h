@@ -20,8 +20,15 @@
 
 class StateAlive : public State {
  public:
-  State* nextState();
+  /**
+   * @brief Actualiza el estado teniendo en cuenta los vecinos de la célula,
+   * previamente calculados.
+   */
+  State* nextState() override;
 
-  char getState() const;
+  /**
+   * @brief Getter de state.
+   */
+  char getState() const override;
 };
 #endif

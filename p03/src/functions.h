@@ -7,7 +7,7 @@
  * Curso: 2º
  * Practice 3 - La vida en el borde
  * Email: alu0101410463@ull.edu.es
- * main.cc: Punto de entrada para ele ejecutable.
+ * functions.h: Interfaz de las funciones de ayuda.
  * Revision history:
  *                14/03/2022 - Creation (first version) of the code
  */
@@ -31,5 +31,9 @@ struct arguments_parser {
   bool valid = false;
   std::string filename;
 
+  /**
+   * @brief Destructura los argumentos recibidos por línea de comandos
+   * rellenando la estructura arguments_parser.
+   */
   arguments_parser(int argc, char* argv[]);
 };

@@ -75,6 +75,8 @@ void GridWithDynamicBorder::nextGeneration() {
     for (int j = 1; j < columns_ + 1; j++) {
       grid_[i][j].updateState();
 
+      // Si se actualiza una célula en el borde se redimensiona la rejilla por
+      // es e lado.
       if (grid_[i][j].getState() == State::state_alive) {
         if (i == 1) overflow.insert(top);
         if (i == rows_) overflow.insert(bottom);
@@ -84,6 +86,7 @@ void GridWithDynamicBorder::nextGeneration() {
     }
   }
 
+  // Redimensionar los lados necesarios
   for (const auto sd : overflow) {
     resize(sd);
   }
@@ -111,11 +114,14 @@ Cell** GridWithDynamicBorder::resizeTop() {
     for (int j = 0; j < columns_ + 2; j++) {
       new_grid[i][j] = Cell(i, j);
 
+      // Si no es la primera fila (la nueva fila) se actualiza el estado en
+      // función de la rejilla previa.
       if (i && grid_[i - 1][j].getState() == State::state_alive) {
         new_grid[i][j].setState(new StateAlive());
       }
     }
   }
+
   return new_grid;
 }
 
@@ -135,6 +141,7 @@ Cell** GridWithDynamicBorder::resizeRight() {
     }
     new_grid[i][columns_ + 1] = Cell(i, columns_ + 1);
   }
+
   return new_grid;
 }
 
@@ -142,14 +149,17 @@ Cell** GridWithDynamicBorder::resizeBottom() {
   rows_++;
   Cell** new_grid = new Cell*[rows_ + 2];
 
+  // Copiar toda la rejilla.
   for (int i = 0; i < rows_ + 1; i++) {
     new_grid[i] = grid_[i];
     grid_[i] = nullptr;
   }
 
+  // Añadir la nueva fila
   new_grid[rows_ + 1] = new Cell[columns_ + 2];
 
   for (int j = 0; j < columns_ + 2; j++) {
+    // Actualizar las coordenadas de cada una de las nuevas células.
     new_grid[rows_ + 1][j] = Cell(rows_ + 1, j);
   }
 

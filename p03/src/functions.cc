@@ -7,7 +7,7 @@
  * Curso: 2º
  * Practice 3 - La vida en el borde
  * Email: alu0101410463@ull.edu.es
- * main.cc: Punto de entrada para ele ejecutable.
+ * functions.cc: Implementación de las funciones de ayuda.
  * Revision history:
  *                14/03/2022 - Creation (first version) of the code
  */

@@ -58,7 +58,14 @@ class Grid {
    */
   virtual void nextGeneration();
 
-  friend std::ostream& operator<<(std::ostream&, const Grid&);
+  /**
+   * @brief Operador para imprimir el estado de una rejilla por pantalla.
+   * @param[out] output_stream Flujo de salida.
+   * @param[in] grid Rejilla a imprimir.
+   * @return El output_stream modificado.
+   */
+  friend std::ostream& operator<<(std::ostream& outputs_stream,
+                                  const Grid& grid);
 
  protected:
   Cell** grid_;
@@ -72,6 +79,11 @@ class Grid {
    */
   virtual void constructGrid() = 0;
 
+  /**
+   * @brief Imprime el estado de la rejilla a través de un stream.
+   * @param[out] output_stream Flujo de salida.
+   * @return El output_stream modificado.
+   */
   virtual std::ostream& print(std::ostream& output_stream) const = 0;
 };
 
