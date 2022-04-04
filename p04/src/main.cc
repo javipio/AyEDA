@@ -14,11 +14,12 @@
 
 #include <iostream>
 
+#include "Dni.h"
 #include "HashTable.h"
 #include "functions.h"
 
 int main(int argc, char* argv[]) {
-  auto args = arguments_parser<long>(argc, argv);
+  auto args = arguments_parser<Dni>(argc, argv);
 
   auto table = args.table;
 
@@ -33,15 +34,14 @@ int main(int argc, char* argv[]) {
     std::cout << "hash-table $> ";
     std::cin.clear();
     getline(std::cin, input);
-    long key;
 
     if (starts_with(input, "insert")) {
-      key = stoi(split(input)[1]);
+      Dni key(split(input)[1]);
       std::cout << (table->insert(key) ? "Insertado con éxito"
                                        : "No se ha podido insertar")
                 << std::endl;
     } else if (starts_with(input, "search")) {
-      key = stoi(split(input)[1]);
+      Dni key(split(input)[1]);
       std::cout << (table->search(key) ? "El elemento se ha encontrado"
                                        : "No se encontró el elemento")
                 << std::endl;

@@ -29,11 +29,11 @@ arguments_parser<Key>::arguments_parser(int argc, char* argv[]) {
         }
 
         if (stringified_optarg == "sum") {
-          fd = new DfSum<long>(size);
+          fd = new DfSum<Key>(size);
         } else if (stringified_optarg == "random") {
-          fd = new DfRandom<long>(size);
+          fd = new DfRandom<Key>(size);
         } else if (stringified_optarg == "module") {
-          fd = new DfModule<long>(size);
+          fd = new DfModule<Key>(size);
         }
 
         break;
@@ -43,13 +43,13 @@ arguments_parser<Key>::arguments_parser(int argc, char* argv[]) {
         }
 
         if (stringified_optarg == "cuadratic") {
-          fe = new EfCuadratic<long>();
+          fe = new EfCuadratic<Key>();
         } else if (stringified_optarg == "lineal") {
-          fe = new EfLineal<long>();
+          fe = new EfLineal<Key>();
         } else if (stringified_optarg == "redispersion") {
-          fe = new EfRedispersion<long>(size);
+          fe = new EfRedispersion<Key>(size);
         } else if (stringified_optarg == "double") {
-          fe = new EfDoubleDispersion<long>(new DfModule<long>(size));
+          fe = new EfDoubleDispersion<Key>(new DfModule<Key>(size));
         }
 
         break;
@@ -59,11 +59,11 @@ arguments_parser<Key>::arguments_parser(int argc, char* argv[]) {
         }
 
         if (stringified_optarg == "sum\0") {
-          alternative_fd = new DfSum<long>(size);
+          alternative_fd = new DfSum<Key>(size);
         } else if (stringified_optarg == "random\0") {
-          alternative_fd = new DfRandom<long>(size);
+          alternative_fd = new DfRandom<Key>(size);
         } else if (stringified_optarg == "module\0") {
-          alternative_fd = new DfModule<long>(size);
+          alternative_fd = new DfModule<Key>(size);
         }
 
         break;

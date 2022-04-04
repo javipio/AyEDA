@@ -11,6 +11,7 @@
  * Revision history:
  *                14/03/2022 - Creation (first version) of the code
  */
+
 #ifndef FUNCTIONS_H_
 #define FUNCTIONS_H_
 
