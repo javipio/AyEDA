@@ -37,11 +37,13 @@ int main(int argc, char* argv[]) {
 
     if (starts_with(input, "insert")) {
       key = stoi(split(input)[1]);
-      std::cout << (table->insert(key) ? "Insertado con éxito" : "guat")
+      std::cout << (table->insert(key) ? "Insertado con éxito"
+                                       : "No se ha podido insertar")
                 << std::endl;
     } else if (starts_with(input, "search")) {
       key = stoi(split(input)[1]);
-      std::cout << (table->search(key) ? "Se" : "No se") << " encontró"
+      std::cout << (table->search(key) ? "El elemento se ha encontrado"
+                                       : "No se encontró el elemento")
                 << std::endl;
     } else if (input == "exit") {
       break;
