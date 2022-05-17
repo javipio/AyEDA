@@ -5,7 +5,7 @@
  * Escuela Superior de Ingeniería y Tecnología
  * Grado en ingeniería informática
  * Curso: 2º
- * Practice 6 - Implementación de árboles binarios equilibrados
+ * Practica 7 - Implementación de árboles binarios de búsqueda
  * Email: alu0101410463@ull.edu.es
  * Node.h: Interfaz de la clase Node que representa un nodo del arbol.
  * Revision history:

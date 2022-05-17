@@ -5,37 +5,36 @@
  * Escuela Superior de Ingeniería y Tecnología
  * Grado en ingeniería informática
  * Curso: 2º
- * Practice 6 - Implementación de árboles binarios equilibrados
+ * Practica 7 - Implementación de árboles binarios de búsqueda
  * Email: alu0101410463@ull.edu.es
  * AB.tpp: Implementación de la clase abstracta AB que representa un arbol
- * binario. Revision history: 01/05/2022 - Creation (first version) of the code
+ *         binario.
+ * Revision history:
+ *                01/05/2022 - Creation (first version) of the code
  */
 
 template <class Key>
 void AB<Key>::Print(std::ostream& output_stream) const {
-  std::queue<Node<Key>*> trace;
-  trace.push(root_);
+  std::queue<Node<Key>*> current_level;
+  std::queue<Node<Key>*> next_level;
+  current_level.push(root_);
+  Node<Key>* current;
 
-  int level_size = 1;
-  int position = 0;
+  while (!current_level.empty()) {
+    current = current_level.front();
+    current_level.pop();
 
-  while (!trace.empty()) {
-    position++;
-
-    Node<Key>* current = trace.front();
     output_stream << (current ? std::to_string(current->value()) : "[.]")
                   << " ";
-    trace.pop();
 
     if (current) {
-      trace.push(current->left());
-      trace.push(current->right());
+      next_level.push(current->left());
+      next_level.push(current->right());
     }
 
-    if (position == level_size) {
-      level_size *= 2;
-      position = 0;
-      std::cout << std::endl;
+    if (current_level.empty() && !next_level.empty()) {
+      output_stream << "\n";
+      copy_queue(next_level, current_level);
     }
   }
 }
@@ -65,3 +64,16 @@ std::ostream& operator<<(std::ostream& output_stream, const AB<Key>& tree) {
   tree.Print(output_stream);
   return output_stream;
 }
+
+template <class Key>
+template <class T>
+void AB<Key>::copy_queue(std::queue<T>& origin, std::queue<T>& dest) const {
+  std::stack<T> temp;
+  T current;
+
+  while (!origin.empty()) {
+    current = origin.front();
+    origin.pop();
+    dest.push(current);
+  }
+};

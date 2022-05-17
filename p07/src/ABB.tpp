@@ -5,7 +5,7 @@
  * Escuela Superior de Ingeniería y Tecnología
  * Grado en ingeniería informática
  * Curso: 2º
- * Practice 6 - Implementación de árboles binarios equilibrados
+ * Practica 7 - Implementación de árboles binarios de búsqueda
  * Email: alu0101410463@ull.edu.es
  * ABB.tpp: Implementación de la clase ABB, concreción de la clase AB.
  * Revision history:
@@ -97,18 +97,21 @@ bool ABB<Key>::Delete(const Key k) {
   return false;
 }
 
-// PUEDE FALLAR (creo)
 template <class Key>
 Node<Key>* ABB<Key>::extract_closest_low_node(Node<Key>* node) {
   Node<Key>* current = node->left();
   Node<Key>* parent = node;
 
-  while (current) {
-    parent = node;
-    current = node->right();
+  while (current && current->right()) {
+    parent = current;
+    current = current->right();
   }
 
-  if (parent != node) parent->set_right(nullptr);
+  if (current && parent->left() == current) {
+    parent->set_left(current->left());
+  } else if (parent->right() == current) {
+    parent->set_right(nullptr);
+  }
 
   return current;
 }

@@ -5,7 +5,7 @@
  * Escuela Superior de Ingeniería y Tecnología
  * Grado en ingeniería informática
  * Curso: 2º
- * Practice 6 - Implementación de árboles binarios equilibrados
+ * Practica 7 - Implementación de árboles binarios de búsqueda
  * Email: alu0101410463@ull.edu.es
  * AB.h: Interfaz de la clase abstracta AB que representa un arbol binario.
  * Revision history:
@@ -32,6 +32,10 @@ class AB {
   void Inorder() const;
 
   void Print(std::ostream& output_stream) const;
+
+ private:
+  template <class T>
+  void copy_queue(std::queue<T>& origin, std::queue<T>& dest) const;
 
  protected:
   Node<Key>* root_;

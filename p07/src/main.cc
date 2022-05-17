@@ -5,7 +5,7 @@
  * Escuela Superior de Ingeniería y Tecnología
  * Grado en ingeniería informática
  * Curso: 2º
- * Practice 6 - Implementación de árboles binarios equilibrados
+ * Practica 7 - Implementación de árboles binarios de búsqueda
  * Email: alu0101410463@ull.edu.es
  * main.cc: Punto de entrada para el programa.
  * Revision history:
@@ -13,11 +13,22 @@
  */
 
 #include "ABB.h"
+#include "ABE.h"
 
 int main(int argc, char* argv[]) {
-  AB<int>* tree = new ABB<int>;
+  AB<int>* tree;
   int opt;
   bool exit = false;
+
+  std::string temp;
+  std::cout << "Quieres usar un ABE o un ABB: ";
+  std::cin >> temp;
+
+  if (temp == "abe" || temp == "ABE") {
+    tree = new ABE<int>();
+  } else {
+    tree = new ABB<int>();
+  }
 
   std::cout << "[0] Salir\n";
   std::cout << "[1] Insertar clave\n";
@@ -62,6 +73,7 @@ int main(int argc, char* argv[]) {
                           ? "Se eliminó el elemento."
                           : "El elemento no se pudo eliminar delárbol")
                   << std::endl;
+        std::cout << (*tree) << std::endl;
         break;
       }
       case 4:
