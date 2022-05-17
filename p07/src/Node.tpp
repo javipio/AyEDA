@@ -14,7 +14,17 @@
 
 template <class Key>
 Node<Key>::Node(Key value, Node<Key>* left, Node<Key>* right)
-    : value_{value}, left_{left}, right_{right} {}
+    : value_{value}, left_{left}, right_{right}, count_{1} {}
+
+template <class Key>
+void Node<Key>::increment_count() {
+  count_++;
+}
+
+template <class Key>
+unsigned Node<Key>::count() const {
+  return count_;
+}
 
 template <class Key>
 Node<Key>* Node<Key>::left() {

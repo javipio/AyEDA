@@ -36,6 +36,7 @@ bool ABB<Key>::Insert(const Key k) {
         return true;
       }
     } else {
+      current->increment_count();
       return false;
     }
   }

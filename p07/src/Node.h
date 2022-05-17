@@ -22,14 +22,18 @@ class Node {
 
   Node<Key>* right();
   Node<Key>* left();
+  unsigned count() const;
 
   void set_right(Node<Key>* node);
   void set_left(Node<Key>* node);
+
+  void increment_count();
 
   Key value() const;
 
  protected:
   Key value_;
+  unsigned count_;
   Node<Key>* left_;
   Node<Key>* right_;
 };

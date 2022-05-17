@@ -24,7 +24,9 @@ void AB<Key>::Print(std::ostream& output_stream) const {
     current = current_level.front();
     current_level.pop();
 
-    output_stream << (current ? std::to_string(current->value()) : "[.]")
+    output_stream << (current ? std::to_string(current->value()) + "(" +
+                                    std::to_string(current->count()) + ")"
+                              : "[.]")
                   << " ";
 
     if (current) {
